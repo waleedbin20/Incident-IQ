@@ -57,17 +57,40 @@ cd incident-iq
 
 # Configure your keys
 # 1. Create a new file named `appsettings.json` in the `src/IncidentIQ.Api/` directory.
-# 2. Input your Azure AI Foundry, GitHub PAT, Fabric IQ, and AppInsights credentials.
+# 2. Input your Azure AI Foundry, GitHub PAT, Fabric IQ, and AppInsights credentials using the exact JSON structure below:
+```json
+{
+  "AI": {
+    "Endpoint": "https://YOUR_RESOURCE_NAME.openai.azure.com/",
+    "ApiKey": "YOUR_AZURE_OPENAI_KEY",
+    "ModelId": "gpt-4o"
+  },
+  "GitHub": {
+    "PersonalAccessToken": "YOUR_GITHUB_PAT"
+  },
+  "Fabric": {
+    "WorkspaceId": "YOUR_WORKSPACE_ID",
+    "KqlDatabaseId": "YOUR_KQL_DB_ID",
+    "TenantId": "YOUR_TENANT_ID",
+    "ClientId": "YOUR_CLIENT_ID",
+    "ClientSecret": "YOUR_CLIENT_SECRET"
+  },
+  "AppInsights": {
+    "AppId": "YOUR_APP_ID",
+    "ApiKey": "YOUR_API_KEY"
+  }
+}
+```
 # Note: appsettings.json is ignored by git to protect your secrets.
 
-# Start the Backend
+# Start the Backend (in Terminal 1)
 cd src/IncidentIQ.Api
 dotnet run
 
-# Start the Frontend
-cd ../IncidentIQ.Web
+# Start the Frontend (in Terminal 2, from the project root)
+cd ui/incident-iq-app
 npm install
-ng serve
+npm run start
 ```
 
 Open **http://localhost:4200** in your browser and click **"Initiate Investigation"**. 🚨

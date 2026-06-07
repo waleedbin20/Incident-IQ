@@ -12,7 +12,7 @@
 
 ## 🎬 Demo
 
-> 📹 *[Watch the demo video →](#placeholder-add-youtube-link-here)*
+> 📹 _[Watch the demo video →](https://www.loom.com/share/33c4410f2ce64c83a8231df8c13116f0)_
 
 **Try it yourself:** Clone the repo, configure your API keys, run `dotnet run`, and launch the Angular frontend.
 
@@ -21,22 +21,26 @@
 ## 🌟 Features
 
 ### 🧠 Multi-Agent Deep Reasoning
+
 Incident-IQ utilizes a `RoundRobinGroupChatManager` from the `.NET 10 Microsoft.Agents.AI.Workflows` SDK. Four specialized agents collaborate to investigate the outage:
 
-| Agent Role | Responsibility | Microsoft IQ / Tool Integration |
-|------------|----------------|---------------------------------|
-| **Commander** | Master Orchestrator | Coordinates the swarm, resolves contradictions, and generates the final JSON Crime Board graph. |
-| **Support-Agent** | User Impact Analysis | Parses raw unstructured user complaints to identify structured, real-time user symptoms (e.g., checkout timeouts). |
-| **Infra-Agent** | Telemetry Analysis | Queries **Microsoft Fabric IQ** (OneLake/KQL) and **Azure Application Insights** to hunt for server anomalies like CPU spikes or thread starvation. |
-| **DevOps-Agent** | Code Change Tracking | Dynamically queries **Live Public GitHub Repositories** for recently merged Pull Requests that align with the incident timeline. |
+| Agent Role        | Responsibility       | Microsoft IQ / Tool Integration                                                                                                                     |
+| ----------------- | -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Commander**     | Master Orchestrator  | Coordinates the swarm, resolves contradictions, and generates the final JSON Crime Board graph.                                                     |
+| **Support-Agent** | User Impact Analysis | Parses raw unstructured user complaints to identify structured, real-time user symptoms (e.g., checkout timeouts).                                  |
+| **Infra-Agent**   | Telemetry Analysis   | Queries **Microsoft Fabric IQ** (OneLake/KQL) and **Azure Application Insights** to hunt for server anomalies like CPU spikes or thread starvation. |
+| **DevOps-Agent**  | Code Change Tracking | Dynamically queries **Live Public GitHub Repositories** for recently merged Pull Requests that align with the incident timeline.                    |
 
 ### 🕸️ Visual "Crime Board" Graph
+
 The output of the swarm is not a block of text, but a strict JSON schema that maps the exact causal chain of the outage. This JSON is pushed via SignalR to a live **D3.js Angular visualization**, rendering nodes (PRs, Servers, Users) and their causal edges.
 
 ### 🔍 Live "Glass Box" Tracing
+
 Trusting AI during a P1 outage is difficult. Incident-IQ intercepts the internal LLM reasoning stream and broadcasts every internal thought, tool execution, and agent response directly to the frontend via SignalR. You watch the agents think in real-time.
 
 ### 🔌 Microsoft Fabric IQ Integration
+
 Fully integrated with **Fabric IQ** and **Azure Application Insights**, the `Infra-Agent` is equipped with MCP tools that execute Kusto Query Language (KQL) queries directly against your enterprise OneLake clusters and live telemetry endpoints.
 
 ---
@@ -44,13 +48,14 @@ Fully integrated with **Fabric IQ** and **Azure Application Insights**, the `Inf
 ## 🚀 Quick Start
 
 ### Prerequisites
+
 - [.NET 10 SDK](https://dotnet.microsoft.com/)
 - [Node.js](https://nodejs.org/) v18+ & Angular CLI (for Frontend)
 - [Azure AI Foundry](https://ai.azure.com/) Project (for GPT-4o model)
 
 ### Installation
 
-```bash
+````bash
 # Clone the repository
 git clone https://github.com/YOUR_USERNAME/incident-iq.git
 cd incident-iq
@@ -80,17 +85,21 @@ cd incident-iq
     "ApiKey": "YOUR_API_KEY"
   }
 }
-```
+````
+
 # Note: appsettings.json is ignored by git to protect your secrets.
 
 # Start the Backend (in Terminal 1)
+
 cd src/IncidentIQ.Api
 dotnet run
 
 # Start the Frontend (in Terminal 2, from the project root)
+
 cd ui/incident-iq-app
 npm install
 npm run start
+
 ```
 
 Open **http://localhost:4200** in your browser and click **"Initiate Investigation"**. 🚨
@@ -100,28 +109,30 @@ Open **http://localhost:4200** in your browser and click **"Initiate Investigati
 ## 📁 Project Structure
 
 ```
+
 incident-iq/
 ├── src/
-│   ├── IncidentIQ.Api/            # ASP.NET Core 10 Web API
-│   │   ├── Controllers/           # REST Endpoints
-│   │   ├── Hubs/                  # SignalR real-time hubs for Glass Box tracing
-│   │   ├── Program.cs             # DI Container & Configuration
-│   │   └── appsettings.json       # Credential configuration (Azure, Fabric, AppInsights, GitHub)
-│   ├── IncidentIQ.Agents/         # Agent Framework Logic
-│   │   ├── Prompts/               # Text-based system prompts for all 4 agents
-│   │   └── SwarmOrchestrator.cs   # GroupChatManager & WorkflowBuilder logic
-│   ├── IncidentIQ.McpServers/     # Tool Integrations
-│   │   ├── AppInsightsMcpTool.cs  # Azure Monitor Application Insights Integration
-│   │   ├── FabricIQMcpTool.cs     # Microsoft Fabric KQL Integration
-│   │   └── GitHubMcpTool.cs       # GitHub PR Integration
-│   └── IncidentIQ.Web/            # Angular 19 Frontend
-│       ├── src/app/
-│       │   ├── glass-box/         # Live trace visualization component
-│       │   └── crime-board/       # D3.js node graph renderer
+│ ├── IncidentIQ.Api/ # ASP.NET Core 10 Web API
+│ │ ├── Controllers/ # REST Endpoints
+│ │ ├── Hubs/ # SignalR real-time hubs for Glass Box tracing
+│ │ ├── Program.cs # DI Container & Configuration
+│ │ └── appsettings.json # Credential configuration (Azure, Fabric, AppInsights, GitHub)
+│ ├── IncidentIQ.Agents/ # Agent Framework Logic
+│ │ ├── Prompts/ # Text-based system prompts for all 4 agents
+│ │ └── SwarmOrchestrator.cs # GroupChatManager & WorkflowBuilder logic
+│ ├── IncidentIQ.McpServers/ # Tool Integrations
+│ │ ├── AppInsightsMcpTool.cs # Azure Monitor Application Insights Integration
+│ │ ├── FabricIQMcpTool.cs # Microsoft Fabric KQL Integration
+│ │ └── GitHubMcpTool.cs # GitHub PR Integration
+│ └── IncidentIQ.Web/ # Angular 19 Frontend
+│ ├── src/app/
+│ │ ├── glass-box/ # Live trace visualization component
+│ │ └── crime-board/ # D3.js node graph renderer
 ├── .gitignore
 ├── LICENSE
 └── README.md
-```
+
+````
 
 ---
 
@@ -159,7 +170,7 @@ Trigger the autonomous agent swarm.
   "incident_id": "P1-9942",
   "description": "Users are reporting checkout timeouts."
 }
-```
+````
 
 **Response:** Streams live SignalR events, concluding with the final Crime Board JSON graph payload.
 
@@ -167,28 +178,28 @@ Trigger the autonomous agent swarm.
 
 ## 🏆 Evaluation Criteria Alignment
 
-| Criteria | Weight | How Incident-IQ Delivers |
-|----------|--------|------------------------|
-| **Accuracy & Relevance** | 20% | Directly addresses the Enterprise Agents track. Integrates seamlessly with **Microsoft Fabric IQ** to solve a real-world enterprise pain point (P1 outages). |
-| **Reasoning & Multi-step Thinking** | 20% | Utilizes a 4-agent swarm. Support finds the symptom, DevOps finds the trigger, Infra verifies the metric, and Commander mathematically correlates them. |
-| **Creativity & Originality** | 15% | Moving away from traditional text-chat into a visual, causal node graph (the "Crime Board") backed by a live streaming "Glass Box". |
-| **User Experience & Presentation** | 15% | Polished Angular UI with D3.js physics-based graphs and a live terminal interface for tracking the LLM's thought process. |
-| **Reliability & Safety** | 20% | Uses local, in-memory `.NET` orchestration preventing state-leaks. The Commander is strictly constrained to output JSON, preventing hallucinations. |
+| Criteria                            | Weight | How Incident-IQ Delivers                                                                                                                                     |
+| ----------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Accuracy & Relevance**            | 20%    | Directly addresses the Enterprise Agents track. Integrates seamlessly with **Microsoft Fabric IQ** to solve a real-world enterprise pain point (P1 outages). |
+| **Reasoning & Multi-step Thinking** | 20%    | Utilizes a 4-agent swarm. Support finds the symptom, DevOps finds the trigger, Infra verifies the metric, and Commander mathematically correlates them.      |
+| **Creativity & Originality**        | 15%    | Moving away from traditional text-chat into a visual, causal node graph (the "Crime Board") backed by a live streaming "Glass Box".                          |
+| **User Experience & Presentation**  | 15%    | Polished Angular UI with D3.js physics-based graphs and a live terminal interface for tracking the LLM's thought process.                                    |
+| **Reliability & Safety**            | 20%    | Uses local, in-memory `.NET` orchestration preventing state-leaks. The Commander is strictly constrained to output JSON, preventing hallucinations.          |
 
 ---
 
 ## 🛠️ Technologies
 
-| Technology | Purpose |
-|-----------|---------|
-| .NET 10 | Core Backend Framework |
-| Microsoft.Agents.AI | Multi-Agent Orchestration (Group Chat) |
-| Microsoft Fabric IQ | Real-time Server Telemetry & KQL Analytics |
-| Azure App Insights | Application exceptions and tracing |
-| Azure AI Foundry | Cloud LLM Infrastructure (GPT-4o) |
-| SignalR | Real-time "Glass Box" telemetry streaming |
-| Angular 19 | Frontend Web Application |
-| D3.js | Crime Board node graph physics and rendering |
+| Technology          | Purpose                                      |
+| ------------------- | -------------------------------------------- |
+| .NET 10             | Core Backend Framework                       |
+| Microsoft.Agents.AI | Multi-Agent Orchestration (Group Chat)       |
+| Microsoft Fabric IQ | Real-time Server Telemetry & KQL Analytics   |
+| Azure App Insights  | Application exceptions and tracing           |
+| Azure AI Foundry    | Cloud LLM Infrastructure (GPT-4o)            |
+| SignalR             | Real-time "Glass Box" telemetry streaming    |
+| Angular 19          | Frontend Web Application                     |
+| D3.js               | Crime Board node graph physics and rendering |
 
 ---
 

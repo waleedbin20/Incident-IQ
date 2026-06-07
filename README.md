@@ -85,19 +85,22 @@ cd incident-iq
     "ApiKey": "YOUR_API_KEY"
   }
 }
-````
+```
 
-# Note: appsettings.json is ignored by git to protect your secrets.
+> **Note:** `appsettings.json` is ignored by git to protect your secrets.
 
+### Run the Application
+
+```bash
 # Start the Backend (in Terminal 1)
-
 cd src/IncidentIQ.Api
 dotnet run
 
 # Start the Frontend (in Terminal 2, from the project root)
-
 cd ui/incident-iq-app
 npm install
+npm start
+```
 npm run start
 
 ```

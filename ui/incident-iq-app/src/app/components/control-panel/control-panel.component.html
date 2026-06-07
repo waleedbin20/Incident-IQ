@@ -1,0 +1,16 @@
+<div class="control-panel">
+  <select class="cyber-select" [(ngModel)]="selectedRepo">
+    <option *ngFor="let repo of repositories" [value]="repo">{{ repo }}</option>
+  </select>
+  <input type="text" class="cyber-input" [(ngModel)]="descriptionText" (keyup.enter)="onInitiate()" placeholder="Describe incident (e.g. 'Users reporting timeouts...')" />
+  <button class="cyber-btn btn-primary" (click)="onInitiate()">
+    <span class="icon">⚡</span>
+    <span class="text">INITIATE P1 INVESTIGATION</span>
+    <div class="glow"></div>
+  </button>
+  
+  <button class="cyber-btn btn-secondary" (click)="onRollback()">
+    <span class="icon">🛡️</span>
+    <span class="text">APPROVE REMEDIATION</span>
+  </button>
+</div>

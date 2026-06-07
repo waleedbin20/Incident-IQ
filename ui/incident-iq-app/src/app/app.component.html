@@ -1,0 +1,53 @@
+<div class="warroom-container">
+  <!-- Glowing header -->
+  <header class="header">
+    <div class="logo-area">
+      <div class="logo-icon">🚨</div>
+      <div class="logo-text">
+        <h1>Incident-IQ</h1>
+        <span class="subtitle">Autonomous P1 War Room</span>
+      </div>
+    </div>
+      <div class="control-panel-wrapper">
+        <app-control-panel (initiate)="onInitiateP1($event)" (rollback)="onApproveRollback()"></app-control-panel>
+      </div>
+  </header>
+
+  <!-- Main Grid Layout -->
+  <main class="main-grid">
+    
+    <!-- Left: D3 Crime Board -->
+    <section class="glass-panel board-panel">
+      <div class="panel-header">
+        <span class="dot red"></span>
+        <h2>Causal Crime Board</h2>
+      </div>
+      <div class="graph-wrapper">
+        <app-crime-board></app-crime-board>
+        <div class="investigating-overlay" *ngIf="isInvestigating">
+          <div class="spinner"></div>
+          <p>Swarm Agents Active: Investigating Incident...</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Right: SignalR Glass Box Terminal -->
+    <section class="glass-panel terminal-panel">
+      <div class="panel-header" style="justify-content: space-between;">
+        <div style="display: flex; align-items: center; gap: 0.8rem;">
+          <span class="dot green"></span>
+          <h2>Live Swarm Telemetry</h2>
+        </div>
+        <div class="view-toggle">
+          <button [class.active]="viewMode === 'terminal'" (click)="viewMode = 'terminal'">Terminal</button>
+          <button [class.active]="viewMode === 'map'" (click)="viewMode = 'map'">2D Map</button>
+        </div>
+      </div>
+      <div class="terminal-wrapper">
+        <app-glass-box [style.display]="viewMode === 'terminal' ? 'block' : 'none'"></app-glass-box>
+        <app-swarm-map [style.display]="viewMode === 'map' ? 'block' : 'none'" [isInvestigating]="isInvestigating" [isResolved]="isResolved"></app-swarm-map>
+      </div>
+    </section>
+
+  </main>
+</div>

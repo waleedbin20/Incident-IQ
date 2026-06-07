@@ -1,0 +1,103 @@
+.control-panel {
+  display: flex;
+  gap: 1rem;
+}
+
+.cyber-select, .cyber-input {
+  flex: 1;
+  background: rgba(10, 15, 25, 0.8);
+  border: 1px solid var(--neon-cyan);
+  color: #fff;
+  padding: 0.8rem 1rem;
+  font-family: var(--font-code);
+  font-size: 0.9rem;
+  border-radius: 4px;
+  box-shadow: inset 0 0 10px rgba(0, 243, 255, 0.1);
+  outline: none;
+  transition: all 0.3s ease;
+
+  &:focus {
+    box-shadow: inset 0 0 15px rgba(0, 243, 255, 0.3), 0 0 15px rgba(0, 243, 255, 0.4);
+    border-color: #fff;
+  }
+}
+
+.cyber-select {
+  flex: 0 0 250px;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2300f3ff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat, repeat;
+  background-position: right .7em top 50%, 0 0;
+  background-size: .65em auto, 100%;
+  
+  option {
+    background: #0a0f19;
+    color: #fff;
+  }
+}
+
+.cyber-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(20, 25, 35, 0.8);
+  border: 1px solid var(--glass-border);
+  color: var(--text-main);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-family: var(--font-main);
+  font-weight: 800;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  
+  .icon { font-size: 1.1rem; }
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  }
+  
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+.btn-primary {
+  border-color: var(--neon-cyan);
+  color: #fff;
+  
+  .glow {
+    position: absolute;
+    top: 0; left: -100%; width: 50%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.4), transparent);
+    animation: scan 3s linear infinite;
+  }
+  
+  &:hover {
+    background: rgba(0, 240, 255, 0.1);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+  }
+}
+
+.btn-secondary {
+  border-color: var(--neon-purple);
+  opacity: 0.8;
+  
+  &:hover {
+    opacity: 1;
+    background: rgba(176, 38, 255, 0.1);
+    box-shadow: 0 0 15px rgba(176, 38, 255, 0.3);
+  }
+}
+
+@keyframes scan {
+  0% { left: -100%; }
+  100% { left: 200%; }
+}

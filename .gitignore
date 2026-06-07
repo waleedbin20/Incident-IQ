@@ -1,0 +1,16 @@
+# Visual Studio / .NET
+[Oo]bj/
+[Bb]in/
+.vs/
+*.user
+*.suo
+
+# Node / Angular
+node_modules/
+dist/
+.angular/
+
+# Configuration / Secrets
+appsettings.json
+appsettings.Development.json
+appsettings.*.json

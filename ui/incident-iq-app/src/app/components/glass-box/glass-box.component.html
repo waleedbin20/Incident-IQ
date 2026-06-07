@@ -1,0 +1,23 @@
+<div class="terminal" #terminalBody (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">
+  <div class="log-entry" *ngFor="let log of logs; let i = index" [style.animation-delay]="'0.1s'">
+    <div class="log-header">
+      <div class="timestamp">[{{log.timestamp | date:'HH:mm:ss.SSS'}}]</div>
+      <div class="agent-badge" [ngClass]="{
+        'commander': log.action.includes('Commander'),
+        'infra': log.action.includes('Infra-Agent'),
+        'support': log.action.includes('Support-Agent'),
+        'devops': log.action.includes('DevOps-Agent'),
+        'orchestrator': log.action === 'ORCHESTRATOR',
+        'execute': log.action === 'EXECUTE'
+      }">
+        <span class="bracket">[</span>{{log.action}}<span class="bracket">]</span>
+      </div>
+    </div>
+    
+    <div class="message" [class.highlight]="log.message.includes('incident_id') || log.message.includes('Mocked')">
+      {{log.message}}
+    </div>
+  </div>
+  <!-- Scanning cursor effect -->
+  <div class="cursor">_</div>
+</div>

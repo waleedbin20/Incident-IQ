@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/IncidentIQ.Agents/IncidentIQ.Agents.csproj" />
+    <Project Path="src/IncidentIQ.Api/IncidentIQ.Api.csproj" />
+    <Project Path="src/IncidentIQ.McpServers/IncidentIQ.McpServers.csproj" />
+  </Folder>
+</Solution>

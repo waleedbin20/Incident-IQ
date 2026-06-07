@@ -1,0 +1,23 @@
+<div class="board-container">
+  <div class="interactive-badge">🖐 Interactive: Drag & Drop Nodes</div>
+  <!-- D3 Graph renders here -->
+  <div #svgContainer class="svg-container"></div>
+  
+  <!-- Data Overlay (Shows only when graph finishes rendering) -->
+  <div class="data-overlay glass-panel" *ngIf="data" [class.visible]="data">
+    <div class="overlay-header">
+      <span class="incident-badge">{{data.incident_id || data.Incident_id || data.Incident_Id || data.IncidentID || 'P1-9942'}}</span>
+      <h3>Root Cause Established</h3>
+    </div>
+    
+    <div class="overlay-content">
+      <p class="summary">{{data.root_cause_summary || data.Root_cause_summary || data.Root_Cause_Summary || data.Summary}}</p>
+      
+      <div class="remediation-box" *ngIf="data.remediation || data.Remediation">
+        <h4>Recommended Remediation</h4>
+        <p>{{(data.remediation || data.Remediation)?.action || (data.remediation || data.Remediation)?.Action}}</p>
+        <span class="approval-tag" *ngIf="(data.remediation || data.Remediation)?.requires_approval || (data.remediation || data.Remediation)?.Requires_approval">⚠️ Requires Approval</span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,6 @@
+@IncidentIQ.Api_HostAddress = http://localhost:5195
+
+GET {{IncidentIQ.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

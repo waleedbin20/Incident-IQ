@@ -1,0 +1,44 @@
+{
+  "incident_id": "P1-9942",
+  "environment": "production",
+  "timestamp_window": "2026-06-06T19:00:00Z - 2026-06-06T20:00:00Z",
+  "fabric_metrics": [
+    { "timestamp": "2026-06-06T19:35:00Z", "service": "CheckoutService", "metric": "CPU_Utilization", "value": "45%", "status": "Healthy" },
+    { "timestamp": "2026-06-06T19:40:00Z", "service": "CheckoutService", "metric": "CPU_Utilization", "value": "62%", "status": "Healthy" },
+    { "timestamp": "2026-06-06T19:42:00Z", "service": "CheckoutService", "metric": "CPU_Utilization", "value": "89%", "status": "Warning" },
+    { "timestamp": "2026-06-06T19:45:00Z", "service": "CheckoutService", "metric": "CPU_Utilization", "value": "100%", "status": "Critical", "alert_triggered": true },
+    { "timestamp": "2026-06-06T19:45:00Z", "service": "CheckoutService", "metric": "Thread_Starvation", "value": "2000_threads_blocked", "status": "Critical" },
+    { "timestamp": "2026-06-06T19:45:00Z", "service": "DatabaseCluster", "metric": "Active_Connections", "value": "4950/5000", "status": "Warning" },
+    { "timestamp": "2026-06-06T19:46:00Z", "service": "DatabaseCluster", "metric": "Active_Connections", "value": "5000/5000", "status": "Critical", "alert_triggered": true },
+    { "timestamp": "2026-06-06T19:46:00Z", "service": "CheckoutService", "metric": "Memory_Usage", "value": "14GB/16GB", "status": "Warning" },
+    { "timestamp": "2026-06-06T19:47:00Z", "service": "PaymentGateway", "metric": "Response_Latency_ms", "value": "5200", "status": "Critical" }
+  ],
+  "app_insights_exceptions": [
+    { "timestamp": "2026-06-06T19:45:10Z", "service": "CheckoutService", "exception_type": "SqlException", "message": "Timeout expired. The timeout period elapsed prior to completion of the operation or the server is not responding. Connection pool exhausted.", "stack_trace": "at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)" },
+    { "timestamp": "2026-06-06T19:45:12Z", "service": "CheckoutService", "exception_type": "SqlException", "message": "Timeout expired. The timeout period elapsed prior to completion of the operation or the server is not responding. Connection pool exhausted.", "stack_trace": "at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)" },
+    { "timestamp": "2026-06-06T19:46:05Z", "service": "CheckoutService", "exception_type": "InvalidOperationException", "message": "Timeout expired. The timeout period elapsed prior to obtaining a connection from the pool. This may have occurred because all pooled connections were in use and max pool size was reached.", "stack_trace": "at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)" },
+    { "timestamp": "2026-06-06T19:46:30Z", "service": "PaymentGateway", "exception_type": "HttpRequestException", "message": "Response status code does not indicate success: 503 (Service Unavailable).", "stack_trace": "at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()" },
+    { "timestamp": "2026-06-06T19:47:00Z", "service": "CheckoutService", "exception_type": "SqlException", "message": "Timeout expired. The timeout period elapsed prior to completion of the operation or the server is not responding. Connection pool exhausted.", "stack_trace": "at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)" },
+    { "timestamp": "2026-06-06T19:47:00Z", "service": "CheckoutService", "exception_type": "SqlException", "message": "Timeout expired. The timeout period elapsed prior to completion of the operation or the server is not responding. Connection pool exhausted.", "stack_trace": "at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)" },
+    { "timestamp": "2026-06-06T19:47:00Z", "service": "CheckoutService", "exception_type": "SqlException", "message": "Timeout expired. The timeout period elapsed prior to completion of the operation or the server is not responding. Connection pool exhausted.", "stack_trace": "at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)" },
+    { "timestamp": "2026-06-06T19:47:00Z", "service": "CheckoutService", "exception_type": "SqlException", "message": "Timeout expired. The timeout period elapsed prior to completion of the operation or the server is not responding. Connection pool exhausted.", "stack_trace": "at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)" },
+    { "timestamp": "2026-06-06T19:47:00Z", "service": "CheckoutService", "exception_type": "SqlException", "message": "Timeout expired. The timeout period elapsed prior to completion of the operation or the server is not responding. Connection pool exhausted.", "stack_trace": "at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)" },
+    { "timestamp": "2026-06-06T19:47:00Z", "service": "CheckoutService", "exception_type": "SqlException", "message": "Timeout expired. The timeout period elapsed prior to completion of the operation or the server is not responding. Connection pool exhausted.", "stack_trace": "at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)" }
+  ],
+  "fabric_logs": [
+    { "timestamp": "2026-06-06T19:40:00Z", "message": "User login rate nominal. 1500 req/sec." },
+    { "timestamp": "2026-06-06T19:44:50Z", "message": "Spike in incoming checkout requests detected: 8500 req/sec." },
+    { "timestamp": "2026-06-06T19:45:00Z", "message": "Connection pool exhausted on CheckoutService instances." },
+    { "timestamp": "2026-06-06T19:45:15Z", "message": "Thread starvation detected across all 8 Checkout nodes. Scale-out triggered." },
+    { "timestamp": "2026-06-06T19:46:00Z", "message": "Scale-out failed due to missing Azure capacity in region East US." },
+    { "timestamp": "2026-06-06T19:47:00Z", "message": "504 Gateway Timeout responses increasing. 100% of checkout traffic failing." },
+    { "timestamp": "2026-06-06T19:48:00Z", "message": "Database queries taking > 30000ms. Deadlocks suspected." },
+    { "timestamp": "2026-06-06T19:49:00Z", "message": "PaymentGateway circuit breaker OPEN. All outbound payment calls halting." }
+  ],
+  "system_config": {
+    "max_pool_size": 5000,
+    "current_connections": 5000,
+    "scale_out_enabled": true,
+    "region": "East US"
+  }
+}

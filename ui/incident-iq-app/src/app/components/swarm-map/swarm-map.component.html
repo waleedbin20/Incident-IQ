@@ -1,0 +1,42 @@
+<div class="war-room">
+  <div class="red-alert-overlay" [class.active]="isInvestigating">
+    <div class="alarm-text" *ngIf="isInvestigating">INCIDENT RAISED: SWARM ACTIVE</div>
+  </div>
+  <div class="green-alert-overlay" [class.active]="isResolved">
+    <div class="alarm-text green-text" *ngIf="isResolved">INVESTIGATION COMPLETED</div>
+  </div>
+  <div class="yellow-alert-overlay" [class.active]="isAwaitingApproval">
+    <div class="alarm-text yellow-text" *ngIf="isAwaitingApproval">AUTHORIZATION REQUIRED</div>
+    
+    <div class="approval-modal" *ngIf="isAwaitingApproval">
+      <h3>⚠️ High-Risk Action Detected</h3>
+      <p>The Commander has requested authorization to execute: <br/> <strong>QueryAppInsightsAsync (Production DB)</strong></p>
+      <div class="modal-actions">
+        <button class="btn-reject" (click)="isAwaitingApproval = false">REJECT</button>
+        <button class="btn-approve" (click)="approveAction()">APPROVE</button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="orchestrator-core">
+    <div class="core-hologram" [class.pulse]="dataPacket.active">🤖</div>
+  </div>
+
+  <div class="agent-desk" *ngFor="let agent of agents" [ngClass]="agent.positionClass">
+    <div class="avatar" [class.active]="agent.isTyping">{{agent.icon}}</div>
+    <div class="desk-label">{{agent.label}}</div>
+    
+    <div class="speech-bubble" [class.visible]="agent.isTyping && !isResolved">
+      <div class="text-preview">{{agent.latestMessage}}</div>
+      <div class="typing-dots"><span>.</span><span>.</span><span>.</span></div>
+    </div>
+  </div>
+
+  <div class="tool-rack" *ngIf="activeTool" [ngClass]="activeTool.sourceClass + '-tool'">
+    <div class="tool-icon">🔧</div>
+    <div class="tool-label">{{activeTool.name}}</div>
+  </div>
+
+  <!-- Animated Data Packet -->
+  <div class="data-packet" *ngIf="dataPacket.active" [ngClass]="dataPacket.sourceClass"></div>
+</div>
